@@ -9,7 +9,7 @@ from app import app
 from portfolio import experience,certificate
 from blogs import blogspython,blogsds
 from englishtutorial import engtutds,engtutba
-from hinditutorial import hintutpython
+from hinditutorial import hinditutpython
 from home import home
 
 portfolio_dropdown = dbc.DropdownMenu(
@@ -41,7 +41,7 @@ english_tutorial = dbc.DropdownMenu(
 	)
 hindi_tutorial = dbc.DropdownMenu(
 	children = [
-	dbc.DropdownMenuItem('Python',href='/hintutpython'),
+	dbc.DropdownMenuItem('Python',href='/hinditutpython'),
 	],
 	nav = True,
 	in_navbar = True,
@@ -54,7 +54,7 @@ navbar = dbc.Navbar(
 			html.A(
 				dbc.Row(
 					[	
-						dbc.Col(html.Img(src='assets/deepakphoto.jpg',height = '30px')),
+						dbc.Col(html.Img(src='assets/deepakphoto.jpg',alt='Deepak Mittal',height = '50px')),
 						dbc.Col(dbc.NavbarBrand('DK',className='ml-2')),
 					],
 					align = 'center',
@@ -88,35 +88,45 @@ navbar = dbc.Navbar(
 		className='mb-4',
 	)
 
+@app.callback(
+	Output(f"navbar-collapse-port",'is_open'),
+	[Input(f"navbar-toggler-porfolio",'n_clicks')],
+	[State(f"navbar-collapse-port",'is_open')]
+	)
 def toggle_navbar_collapse(n, is_open):
     if n:
         return not is_open
     return is_open
 
 @app.callback(
-	Output(f"navbar-collapse-port",'is_open'),
-	[Input(f"navbar-toggler-porfolio",'n_clicks')],
-	[State(f"navbar-collapse-port",'is_open')]
-	)(toggle_navbar_collapse)
-
-@app.callback(
 	Output(f"navbar-collapse-blogs",'is_open'),
 	[Input(f"navbar-toggler-blogs",'n_clicks')],
 	[State(f"navbar-collapse-blogs",'is_open')]
-	)(toggle_navbar_collapse)
+	)
+def toggle_navbar_collapse(n, is_open):
+    if n:
+        return not is_open
+    return is_open
 
 @app.callback(
 	Output(f"navbar-collapse-eng",'is_open'),
 	[Input(f"navbar-toggler-engtut",'n_clicks')],
 	[State(f"navbar-collapse-eng",'is_open')]
-	)(toggle_navbar_collapse)
-
+	)
+def toggle_navbar_collapse(n, is_open):
+    if n:
+        return not is_open
+    return is_open
 @app.callback(
 	Output(f"navbar-collapse-hin",'is_open'),
 	[Input(f"navbar-toggler-hintut",'n_clicks')],
 	[State(f"navbar-collapse-hin",'is_open')]
-	)(toggle_navbar_collapse)
-
+	)
+def toggle_navbar_collapse(n, is_open):
+    if n:
+        return not is_open
+    return is_open
+ 
 app.layout = html.Div([
 	dcc.Location(id='url',refresh=False),
 	navbar,
@@ -138,8 +148,8 @@ def display_page(pathname):
         return engtutds.layout
     elif pathname == '/engtutba':
         return engtutba.layout
-    elif pathname == '/hintutpython':
-        return hintutpython.layout
+    elif pathname == '/hinditutpython':
+        return hinditutpython.layout
     else:
         return home.layout
 
