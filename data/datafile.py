@@ -9,34 +9,34 @@ geocode = RateLimiter(geolocator.geocode, min_delay_seconds=1)
 
 def update():
     #Here you can define your database connection crediential to connect to the source system
-    cwd_old = os.getcwd()
-    new = cwd_old+'\data'
-    os.chdir(new)
-    df = pd.read_excel('US Superstore data.xls')
-    df.to_csv('complete.csv')
-    os.chdir(cwd_old)
+    #cwd_old = os.getcwd()
+    #new = cwd_old+'\data'
+    #os.chdir(new)
+    df = pd.read_excel('data/US Superstore data.xls')
+    df.to_csv('data/complete.csv')
+    #os.chdir(cwd_old)
     return df
 
 def complete():
-    cwd_old = os.getcwd()
-    new = cwd_old+'\data'
-    os.chdir(new)
+#     cwd_old = os.getcwd()
+#     new = cwd_old+'\data'
+#     os.chdir(new)
     try:
-        df = pd.read_csv('complete.csv')
+        df = pd.read_csv('data/complete.csv')
     except:
-        df = pd.read_excel('US Superstore data.xls')
-    os.chdir(cwd_old)
+        df = pd.read_excel('data/US Superstore data.xls')
+#     os.chdir(cwd_old)
     return df
 
 def sales_sub():
-    cwd_old = os.getcwd()
-    new = cwd_old+'\data'
-    os.chdir(new)
+#     cwd_old = os.getcwd()
+#     new = cwd_old+'\data'
+#     os.chdir(new)
     try:
-        df = pd.read_csv('complete.csv')
+        df = pd.read_csv('data/complete.csv')
     except:
-        df = pd.read_excel('US Superstore data.xls')
-    os.chdir(cwd_old)
+        df = pd.read_excel('data/US Superstore data.xls')
+#     os.chdir(cwd_old)
     
     d = []
     for i in df['Sub-Category'].unique():
@@ -48,14 +48,14 @@ def sales_sub():
     return temp
 
 def sales_week():
-    cwd_old = os.getcwd()
-    new = cwd_old+'\data'
-    os.chdir(new)
+#     cwd_old = os.getcwd()
+#     new = cwd_old+'\data'
+#     os.chdir(new)
     try:
-        df = pd.read_csv('complete.csv')
+        df = pd.read_csv('data/complete.csv')
     except:
-        df = pd.read_excel('US Superstore data.xls')
-    os.chdir(cwd_old)
+        df = pd.read_excel('data/US Superstore data.xls')
+#     os.chdir(cwd_old)
 
     df['Order Date'] = pd.to_datetime(df['Order Date'],errors='coerce')
     # df['Lead Time'] = (df['Ship Date'] - df['Order Date']).dt.days
@@ -75,14 +75,14 @@ def sales_week():
     return week14.join(week15,on='Week').join(week16,on='Week').join(week17,on='Week')
 
 def sales_month():
-    cwd_old = os.getcwd()
-    new = cwd_old+'\data'
-    os.chdir(new)
+#     cwd_old = os.getcwd()
+#     new = cwd_old+'\data'
+#     os.chdir(new)
     try:
-        df = pd.read_csv('complete.csv')
+        df = pd.read_csv('data/complete.csv')
     except:
-        df = pd.read_excel('US Superstore data.xls')
-    os.chdir(cwd_old)
+        df = pd.read_excel('data/US Superstore data.xls')
+#     os.chdir(cwd_old)
 
     df['Order Date'] = pd.to_datetime(df['Order Date'],errors='coerce')
     df['Year'] = df['Order Date'].dt.year
@@ -101,14 +101,14 @@ def sales_month():
     return month14.join(month15,on='Month').join(month16,on='Month').join(month17,on='Month')
 
 def geography():
-    cwd_old = os.getcwd()
-    new = cwd_old+'\data'
-    os.chdir(new)
+#     cwd_old = os.getcwd()
+#     new = cwd_old+'\data'
+#     os.chdir(new)
     try:
-        df = pd.read_csv('complete.csv')
-        df_geography = pd.read_csv('geography.csv')
+        df = pd.read_csv('data/complete.csv')
+        df_geography = pd.read_csv('data/geography.csv')
     except:
-        df = pd.read_excel('US Superstore data.xls')
+        df = pd.read_excel('data/US Superstore data.xls')
     address_new = set(df.City.unique()) - set(df_geography.City.unique())
 
     l = []
@@ -120,19 +120,19 @@ def geography():
         df_geography = df_geography.append(df_geography_new,ignore_index=True)
         df_geography = df_geography[['City','Latitude','Longitude']]
         del df_geography_new
-        df_geography.to_csv('geography.csv')
-    os.chdir(cwd_old)
+        df_geography.to_csv('data/geography.csv')
+#     os.chdir(cwd_old)
     return pd.merge(df,df_geography,on='City',how='left')[['City','Profit','Sales','Latitude','Longitude']]
 
 def regionwise():
-    cwd_old = os.getcwd()
-    new = cwd_old+'\data'
-    os.chdir(new)
+#     cwd_old = os.getcwd()
+#     new = cwd_old+'\data'
+#     os.chdir(new)
     try:
-        df = pd.read_csv('complete.csv')
-        df_geography = pd.read_csv('geography.csv')
+        df = pd.read_csv('data/complete.csv')
+        df_geography = pd.read_csv('data/geography.csv')
     except:
-        df = pd.read_excel('US Superstore data.xls')
-    os.chdir(cwd_old)
+        df = pd.read_excel('data/US Superstore data.xls')
+#     os.chdir(cwd_old)
     return df
 
