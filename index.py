@@ -6,46 +6,48 @@ import dash_core_components as dcc
 from app import server
 from app import app
 
-from portfolio import experience,certificate
-from blogs import blogspython,blogsds
-from englishtutorial import engtutds,engtutba
-from hinditutorial import hinditutpython
+from product import piecategory,regionwisesubcategory,salesprofitsubcategory
+from order import salescitywise,salespermonth,salesperweek
+from geography import map
+from customer import salesprofitbestcustomer,segment
 from home import home
 
-portfolio_dropdown = dbc.DropdownMenu(
+product_dropdown = dbc.DropdownMenu(
 	children = [
-	dbc.DropdownMenuItem('Experience',href='/experience'), #dbc.DropdownMenuItem("More pages", header=True)
-	dbc.DropdownMenuItem('Certificate',href='/certificate'),
+	dbc.DropdownMenuItem('Pie Category',href='/piecategory'), #dbc.DropdownMenuItem("More pages", header=True)
+	dbc.DropdownMenuItem('Region-wise',href='/regionwisesubcategory'),
+	dbc.DropdownMenuItem('Sales Sub-Category',href='/salesprofitsubcategory'),
 	],
 	nav = True,
 	in_navbar = True,
-	label = 'Portfolio',
+	label = 'Product',
 	)
-blogs_dropdown = dbc.DropdownMenu(
+order_dropdown = dbc.DropdownMenu(
 	children = [
-	dbc.DropdownMenuItem('Python',href='/blogspython'),
-	dbc.DropdownMenuItem('Data Science',href='/blogsds'),
+	dbc.DropdownMenuItem('City-wise',href='/salescitywise'),
+	dbc.DropdownMenuItem('Sales Per Week',href='/salesperweek'),
+	dbc.DropdownMenuItem('Sales Per Month',href='/salespermonth'),
 	],
 	nav = True,
 	in_navbar = True,
-	label = 'MY Blogs',
+	label = 'Order',
 	)
-english_tutorial = dbc.DropdownMenu(
+customer_dropdown = dbc.DropdownMenu(
 	children = [
-	dbc.DropdownMenuItem('Data Science',href='/engtutds'),
-	dbc.DropdownMenuItem('Business Analytics',href='/engtutba'),
+	dbc.DropdownMenuItem('Segment',href='/segment'),
+	dbc.DropdownMenuItem('Best Customer',href='/salesprofitbestcustomer'),
 	],
 	nav = True,
 	in_navbar = True, 
-	label = 'English Tutorial',
+	label = 'Customer',
 	)
-hindi_tutorial = dbc.DropdownMenu(
+geography_dropdown = dbc.DropdownMenu(
 	children = [
-	dbc.DropdownMenuItem('Python',href='/hinditutpython'),
+	dbc.DropdownMenuItem('Map',href='/map'),
 	],
 	nav = True,
 	in_navbar = True,
-	label = 'Hindi Tutorial',
+	label = 'Geography',
 	)
 #Ref: https://dash-bootstrap-components.opensource.faculty.ai/docs/components/navbar/
 navbar = dbc.Navbar(
@@ -62,24 +64,24 @@ navbar = dbc.Navbar(
 					),
 					href='/home',
 				),
-				dbc.NavbarToggler(id='navbar-toggler-porfolio'),
-				dbc.Collapse(dbc.Nav([portfolio_dropdown],className='port-auto',navbar=True),
-                id="navbar-collapse-port",
+				dbc.NavbarToggler(id='navbar-toggler-product'),
+				dbc.Collapse(dbc.Nav([product_dropdown],className='product-auto',navbar=True),
+                id="navbar-collapse-product",
                 navbar=True,),
 
-				dbc.NavbarToggler(id='navbar-toggler-blogs'),
-				dbc.Collapse(dbc.Nav([blogs_dropdown],className='blogs-auto',navbar=True),
-                id="navbar-collapse-blogs",
+				dbc.NavbarToggler(id='navbar-toggler-order'),
+				dbc.Collapse(dbc.Nav([order_dropdown],className='order-auto',navbar=True),
+                id="navbar-collapse-order",
                 navbar=True,),
 
-				dbc.NavbarToggler(id='navbar-toggler-engtut'),
-				dbc.Collapse(dbc.Nav([english_tutorial],className='eng-auto',navbar=True),
-                id="navbar-collapse-eng",
+				dbc.NavbarToggler(id='navbar-toggler-customer'),
+				dbc.Collapse(dbc.Nav([customer_dropdown],className='customer-auto',navbar=True),
+                id="navbar-collapse-customer",
                 navbar=True,),
 
-				dbc.NavbarToggler(id='navbar-toggler-hintut'),
-				dbc.Collapse(dbc.Nav([hindi_tutorial],className='hin-auto',navbar=True),
-                id="navbar-collapse-hin",
+				dbc.NavbarToggler(id='navbar-toggler-geography'),
+				dbc.Collapse(dbc.Nav([geography_dropdown],className='geography-auto',navbar=True),
+                id="navbar-collapse-geography",
                 navbar=True,),
 		]
 		),
@@ -89,9 +91,9 @@ navbar = dbc.Navbar(
 	)
 
 @app.callback(
-	Output(f"navbar-collapse-port",'is_open'),
-	[Input(f"navbar-toggler-porfolio",'n_clicks')],
-	[State(f"navbar-collapse-port",'is_open')]
+	Output(f"navbar-collapse-product",'is_open'),
+	[Input(f"navbar-toggler-product",'n_clicks')],
+	[State(f"navbar-collapse-product",'is_open')]
 	)
 def toggle_navbar_collapse(n, is_open):
     if n:
@@ -99,9 +101,9 @@ def toggle_navbar_collapse(n, is_open):
     return is_open
 
 @app.callback(
-	Output(f"navbar-collapse-blogs",'is_open'),
-	[Input(f"navbar-toggler-blogs",'n_clicks')],
-	[State(f"navbar-collapse-blogs",'is_open')]
+	Output(f"navbar-collapse-order",'is_open'),
+	[Input(f"navbar-toggler-order",'n_clicks')],
+	[State(f"navbar-collapse-order",'is_open')]
 	)
 def toggle_navbar_collapse(n, is_open):
     if n:
@@ -109,18 +111,18 @@ def toggle_navbar_collapse(n, is_open):
     return is_open
 
 @app.callback(
-	Output(f"navbar-collapse-eng",'is_open'),
-	[Input(f"navbar-toggler-engtut",'n_clicks')],
-	[State(f"navbar-collapse-eng",'is_open')]
+	Output(f"navbar-collapse-customer",'is_open'),
+	[Input(f"navbar-toggler-customer",'n_clicks')],
+	[State(f"navbar-collapse-customer",'is_open')]
 	)
 def toggle_navbar_collapse(n, is_open):
     if n:
         return not is_open
     return is_open
 @app.callback(
-	Output(f"navbar-collapse-hin",'is_open'),
-	[Input(f"navbar-toggler-hintut",'n_clicks')],
-	[State(f"navbar-collapse-hin",'is_open')]
+	Output(f"navbar-collapse-geography",'is_open'),
+	[Input(f"navbar-toggler-geography",'n_clicks')],
+	[State(f"navbar-collapse-geography",'is_open')]
 	)
 def toggle_navbar_collapse(n, is_open):
     if n:
@@ -136,20 +138,24 @@ app.layout = html.Div([
 @app.callback(Output('page-content','children'),
 	[Input('url','pathname')])
 def display_page(pathname):
-    if pathname == '/experience':
-        return experience.layout
-    elif pathname == '/certificate':
-        return certificate.layout
-    elif pathname == '/blogspython':
-        return blogspython.layout
-    elif pathname == '/blogsds':
-        return blogsds.layout
-    elif pathname == '/engtutds':
-        return engtutds.layout
-    elif pathname == '/engtutba':
-        return engtutba.layout
-    elif pathname == '/hinditutpython':
-        return hinditutpython.layout
+    if pathname == '/piecategory':
+        return piecategory.layout
+    elif pathname == '/regionwisesubcategory':
+        return regionwisesubcategory.layout
+    elif pathname == '/salesprofitsubcategory':
+        return salesprofitsubcategory.layout
+    elif pathname == '/salescitywise':
+        return salescitywise.layout
+    elif pathname == '/salespermonth':
+        return salespermonth.layout
+    elif pathname == '/salesperweek':
+        return salesperweek.layout
+    elif pathname == '/map':
+        return map.layout
+    elif pathname == '/salesprofitbestcustomer':
+        return salesprofitbestcustomer.layout
+    elif pathname == '/segment':
+        return segment.layout
     else:
         return home.layout
 
