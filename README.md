@@ -24,5 +24,8 @@
 </div>
 
 <div>
+  <h2>4. Reference</h2>
+  <p><a href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/navbar/">dash-bootstrap-components</a></p>
+<div>
   <p align="right"><b>Happy Coding :)🖤🖤🖤</b></p>
 </div>
