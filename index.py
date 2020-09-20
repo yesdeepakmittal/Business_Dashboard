@@ -56,8 +56,7 @@ navbar = dbc.Navbar(
 			html.A(
 				dbc.Row(
 					[	
-						dbc.Col(html.Img(src='assets/deepakphoto.jpg',alt='Deepak Mittal',height = '50px')),
-						dbc.Col(dbc.NavbarBrand('DK',className='ml-2')),
+						dbc.Col(dbc.NavbarBrand('Home')),
 					],
 					align = 'center',
 					no_gutters = True,
@@ -65,30 +64,29 @@ navbar = dbc.Navbar(
 					href='/home',
 				),
 				dbc.NavbarToggler(id='navbar-toggler-product'),
-				dbc.Collapse(dbc.Nav([product_dropdown],className='product-auto',navbar=True),
+				dbc.Collapse(dbc.Nav([product_dropdown],navbar=True),
                 id="navbar-collapse-product",
                 navbar=True,),
 
 				dbc.NavbarToggler(id='navbar-toggler-order'),
-				dbc.Collapse(dbc.Nav([order_dropdown],className='order-auto',navbar=True),
+				dbc.Collapse(dbc.Nav([order_dropdown],navbar=True),
                 id="navbar-collapse-order",
                 navbar=True,),
 
 				dbc.NavbarToggler(id='navbar-toggler-customer'),
-				dbc.Collapse(dbc.Nav([customer_dropdown],className='customer-auto',navbar=True),
+				dbc.Collapse(dbc.Nav([customer_dropdown],navbar=True),
                 id="navbar-collapse-customer",
                 navbar=True,),
 
 				dbc.NavbarToggler(id='navbar-toggler-geography'),
-				dbc.Collapse(dbc.Nav([geography_dropdown],className='geography-auto',navbar=True),
+				dbc.Collapse(dbc.Nav([geography_dropdown],navbar=True),
                 id="navbar-collapse-geography",
                 navbar=True,),
 		]
 		),
 		color='dark',
 		dark=True,
-		className='mb-4',
-	)
+			)
 
 @app.callback(
 	Output(f"navbar-collapse-product",'is_open'),
