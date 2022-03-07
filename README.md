@@ -1,31 +1,23 @@
-<div align="center">
-  <p align="right"><a href="https://github.com/yesdeepakmittal/">About Author</a></p>
-  <h1>Business Dashboard using Python</h1>
-</div>
+## About Project
+This repository contains code for a full-stack web-based Python application.
 
-<div>
-  <h2>1. About the project</h2>
-  <p>This repository consists of a code of a Sales Dashboard which is made using python. 
-  This code is free to use by anyone and licensed under the MIT open-source license. 
-  In this dashboard, there are separate dropdowns for analyzing different dimensions of sales.
-  The core python libraries used in this dashboard are dash, plotly, dash_core_components, dash_html_components, dash_bootstrap_components, etc.
-  The app is deployable on the server and deployed on <a href="https://busidashboard.herokuapp.com/">Heroku</a>. 
-  </p>
-</div>
+## How to use it?
+Current version of Python( >= 3.9) may not run this application properly due to different versions of dependencies. 
+- Install earlier version of [Python(~ 3.6)](https://www.python.org/ftp/python/3.6.8/python-3.6.8-amd64.exe)
+- Make a [Virtual Environment](https://gist.github.com/yesdeepakmittal/61494217c8be4a7e61524e27824943bd) and activate it.
+- Clone this repository `git clone https://github.com/yesdeepakmittal/Business_Dashboard.git`
+- `cd Business_Dashboard`
+- `pip install -r requirements.txt`
+- run application using `python index.py`
+- Check your application in the browser at `http://127.0.0.1:8050/` 
 
-<div>
-  <h2>2. Contributor</h2>
-  <p><a href="https://github.com/yesdeepakmittal"target="_blank">Deepak Mittal</a></p>
-</div>
+## Overview
 
-<div>
-  <h2>3. Data Source</h2>
-  <p>🌐 <a href="https://www.kaggle.com/juhi1994/superstore">kaggle</a></p>
-</div>
+<div><img src="assets/map.jpg" alt="Heat Map" width="700" height="500"></div>
+<div><img src="assets/regionwisesubcategory.jpg" alt="Heat Map" width="700" height="500"></div>
+<div><img src="assets/sales.jpg" alt="Heat Map" width="700" height="500"></div>
+<div><img src="assets/salescitywise.jpg" alt="Heat Map" width="700" height="500"></div>
 
-<div>
-  <h2>4. Reference</h2>
-  <p><a href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/navbar/">dash-bootstrap-components</a></p>
-<div>
-  <p align="right"><b>Happy Coding :)🖤🖤🖤</b></p>
-</div>
+
+## Data Source
+[Kaggle](https://www.kaggle.com/juhi1994/superstore)
