@@ -7,10 +7,10 @@ from dash.dependencies import Input,Output,State
 row = dbc.Row([
         dbc.Col(dbc.Jumbotron([
             html.H5(children="About Author"),
-            html.P("Data Enthusiast & Business Geek"),
+            html.P("Data Scientist"),
             html.Hr(),
-            html.P("Follow me on Github"),
-            html.A(dbc.Button("Read here", color="primary"),href='https://github.com/yesdeepakmittal')],
+            html.P("Treat Data & People equally"),
+            html.A(dbc.Button("Follow Author on Github", color="primary"),href='https://github.com/yesdeepakmittal')],
             ), lg=4, md=4, xs=12),
         dbc.Col(dbc.Jumbotron([
             html.H5(children="For Demo Only"),
@@ -21,17 +21,17 @@ row = dbc.Row([
             html.A(dbc.Button("Read here", color="primary"),href='https://github.com/yesdeepakmittal')],
             ), lg=4, md=4, xs=12),
         dbc.Col(dbc.Jumbotron([
-            html.H5(children="Python Introduction"),
-            html.P("One of the easiest and most widely used programming language in the world."),
+            html.H5(children="Improve Application"),
+            html.P("Feel free to open an issue in Github Repository for any Suggestion/Improvement"),
             html.Hr(),
-            html.P("Read the full blog at SolvProb"),
-            html.A(dbc.Button("Read here", color="primary"),href='https://github.com/yesdeepakmittal')],
+            html.P("Click below button to open an issue"),
+            html.A(dbc.Button("Open issue", color="primary"),href='https://github.com/yesdeepakmittal/Business_Dashboard/issues/new')],
             ), lg=4, md=4, xs=12)],justify='around')
 
 
 layout = html.Div(children=[html.H1(children='Sample Superstore Data Analysis'),
-                html.P(children='This data analysis is made on Sample Superstore data of Tableau. '),
-                html.Div(['Click for complete Up-to-date data👉',html.Button('Update-data', id='button')]),
+                html.P(children='Python Web Application made using low-code framework, Dash'),
+                html.Div(['Update Data👉',html.Button('Update-data', id='button')]),
                 html.Br(),
                 row,
                 html.Div(id='Output',children='')],
